@@ -621,7 +621,7 @@ int main(int argc, char * argv[])
 {
 
   if ( argc != 3 ) {
-    std::cout << "Usage: VarianConvert input.fdf output.nii.gz" << std::endl;
+    std::cout << "Usage: VarianSliceConvert input.fdf output.nii.gz" << std::endl;
   }
 
 
@@ -639,7 +639,7 @@ int main(int argc, char * argv[])
   }
 
   std::string storage = GetStorageType( filename );
-  std::cout << "ValueType: " << storage << std::endl;
+  //std::cout << "ValueType: " << storage << std::endl;
 
   if ( storage == "float" )
   {
@@ -649,7 +649,6 @@ int main(int argc, char * argv[])
     ImagePointer img = ImageType::New();
 
     if ( ReadImage<ImageType>( filename, img ) ) {
-      std::cout << "Can read header: " << filename << std::endl;
       std::cout << img << std::endl;
 
       typename WriterType::Pointer writer = WriterType::New();
@@ -660,6 +659,7 @@ int main(int argc, char * argv[])
     }
     else {
       std::cout << "Unable to read header: " << filename << std::endl;
+      std::cout << "Currently only 'float' data is supported" << std::endl;
     }
 
   }
